@@ -1,11 +1,20 @@
-import { prop, getModelForClass } from "@typegoose/typegoose";
+import { prop, getModelForClass, modelOptions } from "@typegoose/typegoose";
 
+@modelOptions({
+  schemaOptions: {
+    timestamps: true,
+  },
+})
 export class Post {
-
-  @prop()
+  @prop({
+    required: true,
+    trim: true,
+  })
   title: string;
 
-  @prop()
+  @prop({
+    trim: true,
+  })
   description: string;
 
   @prop()

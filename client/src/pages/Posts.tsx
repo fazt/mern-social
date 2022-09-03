@@ -18,7 +18,7 @@ function Posts() {
         return (
           <div key={post._id}>
             <h3>{post.title}</h3>
-            <p>{post.body}</p>
+            <p>{post.description}</p>
           </div>
         );
       })}

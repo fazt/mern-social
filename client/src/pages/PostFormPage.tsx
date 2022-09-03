@@ -1,10 +1,10 @@
 import { Formik, Form } from "formik";
-import { createPost } from "../api/posts.request";
 import { createNewPost } from "../app/features/posts/postsSlices";
 import { useDispatch } from "react-redux";
+import { AppDispatch } from "../app/store";
 
 function CreatePost() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <div>
@@ -13,16 +13,7 @@ function CreatePost() {
           title: "",
           description: "",
         }}
-        onSubmit={async (values, actions) => {
-          actions.setSubmitting(false);
-          try {
-            // const response = await createPost(values);
-            // console.log(response)
-            dispatch(createNewPost());
-          } catch (error) {
-            console.error(error);
-          }
-        }}
+        onSubmit={async (values, actions) => dispatch(createNewPost(values))}
       >
         {({ handleChange }) => (
           <Form>
@@ -31,6 +22,7 @@ function CreatePost() {
               name="title"
               placeholder="title"
               onChange={handleChange}
+              autoFocus
             />
             <textarea
               name="description"

@@ -1,16 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import CreatePost from "./pages/createPost";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
-import Posts from "./pages/Posts";
+
+import PostsPage from "./pages/Posts";
+import PostFormPage from "./pages/PostFormPage";
+import HomePage from "./pages/HomePage";
+
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
+        <Navbar />
+
         <Routes>
-          <Route path="/" element={<Posts />} />
-          <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/posts" element={<PostsPage />} />
+          <Route path="/create-post" element={<PostFormPage />} />
         </Routes>
       </BrowserRouter>
     </Provider>

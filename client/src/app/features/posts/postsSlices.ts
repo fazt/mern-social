@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { getPosts } from "../../../api/posts.request";
+import { getPostsRequest, createPostRequest } from "../../../api/posts.request";
 
 interface Post {
-  _id: string;
+  _id?: string;
   title: string;
   description: string;
 }
@@ -17,22 +17,24 @@ const initialState: PostState = {
 };
 
 export const fetchPosts = createAsyncThunk("posts/fetchAllPosts", async () => {
-  const response = await getPosts();
+  const response = await getPostsRequest();
   return response.data;
 });
+
+export const createNewPost = createAsyncThunk(
+  "posts/createPost",
+  async (newPost: Post) => {
+    console.log(newPost)
+    const response = await createPostRequest(newPost);
+    console.log(response)
+    return response.data;
+  }
+);
 
 const postSlice = createSlice({
   name: "posts",
   initialState,
-  reducers: {
-    createNewPost(state) {
-      state.posts.push({
-        _id: "1",
-        title: "title",
-        description: "description",
-      });
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchPosts.fulfilled, (state, action) => {
       // Add user to the state array
@@ -42,5 +44,4 @@ const postSlice = createSlice({
   },
 });
 
-export const { createNewPost } = postSlice.actions;
 export default postSlice.reducer;
