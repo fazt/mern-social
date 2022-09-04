@@ -14,11 +14,13 @@ function App() {
       <BrowserRouter>
         <Navbar />
 
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/posts" element={<PostsPage />} />
-          <Route path="/create-post" element={<PostFormPage />} />
-        </Routes>
+        <div className="container mx-auto">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/posts" element={<PostsPage />} />
+            <Route path="/create-post" element={<PostFormPage />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </Provider>
   );

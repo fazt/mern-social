@@ -2,9 +2,11 @@ import { Formik, Form } from "formik";
 import { createNewPost } from "../app/features/posts/postsSlices";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../app/store";
+import { useNavigate } from "react-router-dom";
 
 function CreatePost() {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -13,7 +15,12 @@ function CreatePost() {
           title: "",
           description: "",
         }}
-        onSubmit={async (values, actions) => dispatch(createNewPost(values))}
+        onSubmit={async (values, actions) => {
+          actions.setSubmitting(true);
+          dispatch(createNewPost(values));
+          navigate("/posts");
+          actions.setSubmitting(false);
+        }}
       >
         {({ handleChange }) => (
           <Form>
@@ -29,7 +36,7 @@ function CreatePost() {
               placeholder="text"
               onChange={handleChange}
             />
-            <button type="submit">create post</button>
+            <button type="submit">Create Post</button>
           </Form>
         )}
       </Formik>

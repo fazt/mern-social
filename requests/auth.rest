@@ -1,0 +1,22 @@
+@api = http://localhost:3000
+
+### Sign up
+
+POST {{api}}/signup
+Content-Type: application/json
+
+{
+  "email": "fazt@local.com",
+  "password": "123456",
+  "firstname": "Fazt",
+  "lastname": "Web"
+}
+
+### Sign in
+POST {{api}}/signin
+Content-Type: application/json
+
+{
+  "email": "fazt@local.com",
+  "password": "123456"
+}

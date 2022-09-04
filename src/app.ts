@@ -5,8 +5,12 @@ import morgan from "morgan";
 
 import postRoutes from "./routes/post.routes";
 import indexRoutes from "./routes/index.routes";
+import authRoutes from './routes/auth.routes'
 
 const app = express();
+
+// Settings
+app.set('json spaces', 2);
 
 app.use(express.json());
 app.use(
@@ -24,5 +28,6 @@ app.use(
 
 app.use(indexRoutes);
 app.use(postRoutes);
+app.use(authRoutes)
 
 export default app;

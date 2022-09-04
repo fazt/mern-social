@@ -24,9 +24,7 @@ export const fetchPosts = createAsyncThunk("posts/fetchAllPosts", async () => {
 export const createNewPost = createAsyncThunk(
   "posts/createPost",
   async (newPost: Post) => {
-    console.log(newPost)
     const response = await createPostRequest(newPost);
-    console.log(response)
     return response.data;
   }
 );

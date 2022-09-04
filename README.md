@@ -20,6 +20,17 @@ These are the list of main Tools and libraries used in this project:
 
 ### docker-compose
 
-```
+for backend development
 
 ```
+docker-compose up -d
+npm i
+npm run dev
+```
+
+### commands
+
+* `npm run seed`, to fill the database with sample data
+* `npm run dev`, to run the backend development server
+* `npm run build`, to build the backend project
+* `npm start`, to start the production server

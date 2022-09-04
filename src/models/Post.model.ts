@@ -20,7 +20,13 @@ export class Post {
   @prop()
   image: string;
 
-  // author
+  @prop({
+    default: 0,
+  })
+  likes: number;
+
+  @prop()
+  author: string;
 }
 
 const PostModel = getModelForClass(Post);
